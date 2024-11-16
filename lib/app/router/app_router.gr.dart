@@ -10,6 +10,44 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [HomeScreen]
+class HomeScreenRoute extends PageRouteInfo<void> {
+  const HomeScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeScreenRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LoginScreen]
+class LoginScreenRoute extends PageRouteInfo<void> {
+  const LoginScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginScreenRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoginScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [RegisterScreen]
 class RegisterScreenRoute extends PageRouteInfo<void> {
   const RegisterScreenRoute({List<PageRouteInfo>? children})

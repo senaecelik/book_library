@@ -4,6 +4,7 @@ import 'package:book_library/app/resources/values_manager.dart';
 import 'package:book_library/app/router/app_router.dart';
 import 'package:book_library/core/di/locator.dart';
 import 'package:book_library/features/auth/register/domain/entity/user_entity.dart';
+import 'package:book_library/features/auth/register/domain/usecases/create_user_use_case.dart';
 import 'package:book_library/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:book_library/widget/button/outlined_primary_button.dart';
 import 'package:book_library/widget/text/message_text_widget.dart';
@@ -24,7 +25,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<RegisterScreen> {
-  late RegisterCubit _registerCubit;
+    final RegisterCubit _registerCubit = RegisterCubit(getIt<CreateUserUseCase>());
   final _formKey = GlobalKey<FormState>();
 
   late TextEditingController _nameController,
@@ -34,8 +35,8 @@ class _LoginScreenState extends State<RegisterScreen> {
 
   @override
   void initState() {
-    _registerCubit = getIt<RegisterCubit>();
     _nameController = TextEditingController();
+    _lastNameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
@@ -59,9 +60,9 @@ class _LoginScreenState extends State<RegisterScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  // context.router.popAndPush(
-                  //   const SingInRoute(),
-                  // );
+                  context.router.popAndPush(
+                    const LoginScreenRoute(),
+                  );
                 },
                 child: Text(
                   LocaleKeys.register_login_now.tr(),
@@ -88,6 +89,9 @@ class _LoginScreenState extends State<RegisterScreen> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Adı"),
+                  validator: (value) {
+                   return value!.isEmpty ?  "Please not blank": null;
+                  },
                   controller: _nameController,
                 ),
                 SizedBox(
@@ -95,7 +99,10 @@ class _LoginScreenState extends State<RegisterScreen> {
                 ),
                   TextFormField(
                   decoration: const InputDecoration(labelText: "Soyadı"),
-                  controller: _nameController,
+                   validator: (value) {
+                   return value!.isEmpty ?  "Please not blank": null;
+                  },
+                  controller: _lastNameController,
                 ),
                  SizedBox(
                   height: AppSizeHeight.s16,
@@ -113,7 +120,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       listener: (context, state) {
                           state is RegisterDone
                             ? context.router.pushAndPopUntil(
-                                const WelcomeScreenRoute(),
+                                const HomeScreenRoute(),
                                 predicate: (route) => false,
                               )
                             : null;

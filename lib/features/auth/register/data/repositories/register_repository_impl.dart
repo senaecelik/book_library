@@ -4,9 +4,7 @@ import 'package:book_library/features/auth/register/data/model/user_model.dart';
 import 'package:book_library/features/auth/register/domain/entity/user_entity.dart';
 import 'package:book_library/features/auth/register/domain/repositories/register_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
-
 @Injectable(as: RegisterRepository)
 class RegisterRepositoryImpl extends RegisterRepository {
   final RegisterRemoteDataSource _dataSource;
@@ -31,16 +29,18 @@ class RegisterRepositoryImpl extends RegisterRepository {
       return Left(Failure(message: e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, String>> createUserWithEmailAndPassword(UserEntity user) async {
     try {
-      _dataSource.createUserWithEmailAndPassword(user);
-      return Right("başarılı");
-    } catch (e) {
-            return Left(Failure(message: e.toString()));
+      // Kullanıcıyı e-posta ve şifre ile oluştur
+      await _dataSource.createUserWithEmailAndPassword(user);
 
+      // Eğer başarıyla tamamlanmışsa "Başarılı" mesajı döndür
+      return Right("Başarılı");
+    } catch (e) {
+      // Hata durumunda Failure döndür
+      return Left(Failure(message: e.toString()));
     }
   }
-  
 }

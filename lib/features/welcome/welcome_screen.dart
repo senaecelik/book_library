@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
                   FilledPrimaryButton(
                     child: Text(LocaleKeys.general_button_login.tr()),
                     onPressed: () {
-                      // context.router.push(const SingInRoute());
+                      context.router.push(const LoginScreenRoute());
                     },
                   ),
                   SizedBox(

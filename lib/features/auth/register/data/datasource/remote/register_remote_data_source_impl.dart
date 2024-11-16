@@ -15,13 +15,12 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
 
   @override
   Future<String> getCurrentUid() async => firebaseAuth.currentUser!.uid;
+
   @override
   Future<UserModel?> createUser(UserEntity userEntity) async {
     try {
       final userCollection = firebaseFirestore.collection("users");
-
       final uid = await getCurrentUid();
-
       final userDoc = await userCollection.doc(uid).get();
 
       // Yeni kullanıcı modelini oluştur
@@ -47,24 +46,26 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
     }
   }
 
-
- @override
+  @override
   Future<void> createUserWithEmailAndPassword(UserEntity user) async {
     try {
-      await firebaseAuth
-          .createUserWithEmailAndPassword(
-              email: user.email, password: user.password!)
-          .then((currentUser) async {
-        if (currentUser.user?.uid != null) {
-          createUser(user);
-        }
-      });
-      return;
+      final result = await firebaseAuth.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password!,
+      );
+
+      if (result.user?.uid != null) {
+        // Kullanıcı oluşturulmuşsa, Firestore'a ekleyelim
+        await createUser(user);
+      } else {
+        throw Exception("User creation failed");
+      }
     } catch (e) {
-     
+      if (e is FirebaseAuthException) {
         rethrow;
-      
+      } else {
+        rethrow;
+      }
     }
   }
-
 }
