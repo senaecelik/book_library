@@ -37,7 +37,7 @@ class RegisterRepositoryImpl extends RegisterRepository {
       await _dataSource.createUserWithEmailAndPassword(user);
 
       // Eğer başarıyla tamamlanmışsa "Başarılı" mesajı döndür
-      return Right("Başarılı");
+      return const Right("Başarılı");
     } catch (e) {
       // Hata durumunda Failure döndür
       return Left(Failure(message: e.toString()));

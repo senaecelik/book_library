@@ -15,13 +15,13 @@ class LoginRepositoryImpl extends LoginRepository {
   LoginRepositoryImpl(this._dataSource);
 
   @override
-  Future<Either<Failure, void>> loginWithEmail(LoginEntity loginModel)async {
+  Future<Either<Failure, String>> loginWithEmail(LoginEntity loginModel)async {
  try {
       // Kullanıcıyı e-posta ve şifre ile oluştur
       await _dataSource.loginEmailAndPassword(loginModel);
 
       // Eğer başarıyla tamamlanmışsa "Başarılı" mesajı döndür
-      return Right("Başarılı");
+      return const Right("Başarılı");
     } catch (e) {
       // Hata durumunda Failure döndür
       return Left(Failure(message: e.toString()));
@@ -29,13 +29,13 @@ class LoginRepositoryImpl extends LoginRepository {
   }
   
   @override
-  Future<Either<Failure, void>> logOut()async {
+  Future<Either<Failure, String>> logOut()async {
      try {
       // Kullanıcıyı e-posta ve şifre ile oluştur
       await _dataSource.logout();
 
       // Eğer başarıyla tamamlanmışsa "Başarılı" mesajı döndür
-      return Right("Başarılı");
+      return const Right("Başarılı");
     } catch (e) {
       // Hata durumunda Failure döndür
       return Left(Failure(message: e.toString()));

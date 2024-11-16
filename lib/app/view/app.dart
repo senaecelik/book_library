@@ -5,7 +5,6 @@ import 'package:book_library/app/theme/light/app_light_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyApp extends StatefulWidget {

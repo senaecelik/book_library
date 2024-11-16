@@ -17,7 +17,13 @@
         "have_an_account":"Zaten bir hesabınız mı var?",
         "login_now":"Şimdi giriş yapın"
     },
-    
+    "forgot_pass":{
+        "title":"Şifremi Unuttum",
+        "sub_title":"E-posta adresinizi girin. Size şifrenizi sıfırlamanız için bir bağlantı göndereceğiz.",
+        "reset_pass":"Şifreyi sıfırla"
+
+    },
+
     "home":{
         "title": "Anasayfa"
     },
@@ -41,7 +47,8 @@
             "save":"Kaydet",
             "sign_in_with_google":"Google ile giriş yap",
             "login": "Giriş Yap",
-            "register": "Kayıt Ol"
+            "register": "Kayıt Ol",
+            "go_back":"Geri dön"
         },
     
         "snackbar":{

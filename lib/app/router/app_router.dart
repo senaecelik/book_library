@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:book_library/features/auth/forgot_password/presentation/screen/forgot_password_screen.dart';
 import 'package:book_library/features/auth/login/presentation/screen/login_screen.dart';
 import 'package:book_library/features/auth/register/presentation/screen/register_screen.dart';
 import 'package:book_library/features/home/home_screen.dart';
@@ -17,10 +18,13 @@ final class AppRouter extends RootStackRouter {
         AutoRoute(page: RegisterScreenRoute.page,),
         AutoRoute(page: LoginScreenRoute.page,),
         AutoRoute(page: HomeScreenRoute.page,),
+        AutoRoute(page: ForgotPasswordScreenRoute.page,),
+
 
 
       ];
-   List<AutoRouteGuard> get guards => [
+   @override
+  List<AutoRouteGuard> get guards => [
     // optionally add root guards here
   ];
 }

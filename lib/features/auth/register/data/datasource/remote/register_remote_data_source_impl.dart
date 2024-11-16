@@ -47,16 +47,16 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   }
 
   @override
-  Future<void> createUserWithEmailAndPassword(UserEntity user) async {
+  Future<void> createUserWithEmailAndPassword(UserEntity userEntity) async {
     try {
       final result = await firebaseAuth.createUserWithEmailAndPassword(
-        email: user.email,
-        password: user.password!,
+        email: userEntity.email,
+        password: userEntity.password!,
       );
 
       if (result.user?.uid != null) {
         // Kullanıcı oluşturulmuşsa, Firestore'a ekleyelim
-        await createUser(user);
+        await createUser(userEntity);
       } else {
         throw Exception("User creation failed");
       }

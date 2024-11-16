@@ -67,7 +67,6 @@ class AppInitialize {
       /// Send error information to services like Crashlytics
       /// Crashlytics gibi servislere hata bilgisini gönder
   
-      /// TODO: Add custom logger
       Logger().e(details.exceptionAsString());
     };
   }
