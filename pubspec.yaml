@@ -54,6 +54,7 @@ dependencies:
   firebase_auth: ^5.3.3
   cloud_firestore: ^5.5.0
   dartz: ^0.10.1
+  iconsax: ^0.0.8
 
 
 
