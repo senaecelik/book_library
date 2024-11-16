@@ -1,0 +1,54 @@
+{
+    "welcome":{
+        "continue_as_a_guest":"Misafir olarak devam et"
+    },
+    
+    "login":{
+        "title":"Tekrar hoş geldiniz! Sizi tekrar görmek güzel!",
+        "forgot_pass":"Şifrenizi mi unuttunuz?",
+        "or_login_with":"Veya ile giriş yapın",
+        "dont_you_have_an_account":"Hesabınız yok mu?",
+        "register_now":"Şimdi kaydol"
+    },
+    
+    "register":{
+        "title":"Merhaba! Başlamak için kaydolun.",
+        "or_resigter_with":"Veya ile kaydolun",
+        "have_an_account":"Zaten bir hesabınız mı var?",
+        "login_now":"Şimdi giriş yapın"
+    },
+    
+    "home":{
+        "title": "Anasayfa"
+    },
+    
+    "general":{
+        "language":{
+            "tr":"Türkçe",
+            "en":"İngilizce"
+        },
+        "text_field":{
+            "email":{
+                "label":"E-posta",
+                "hint":"Lütfen e-postayı girin"
+            },
+            "password":{
+                "label":"Şifre",
+                "hint":"Lütfen şifreyi girin"
+            }
+        },
+        "button":{
+            "save":"Kaydet",
+            "sign_in_with_google":"Google ile giriş yap",
+            "login": "Giriş Yap",
+            "register": "Kayıt Ol"
+        },
+    
+        "snackbar":{
+            "version":{
+                "title":"Sürüm",
+                "content":""
+            }
+        }
+    }
+}
