@@ -9,6 +9,18 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:book_library/core/di/locator.dart' as _i664;
+import 'package:book_library/features/auth/forgot_password/data/datasource/remote/forgot_password_remote_data_source.dart'
+    as _i740;
+import 'package:book_library/features/auth/forgot_password/data/datasource/remote/forgot_password_remote_data_source_impl.dart'
+    as _i744;
+import 'package:book_library/features/auth/forgot_password/data/repositories/forgot_password_repository_impl.dart'
+    as _i676;
+import 'package:book_library/features/auth/forgot_password/domain/repositories/forgot_password_repository.dart'
+    as _i660;
+import 'package:book_library/features/auth/forgot_password/domain/usecases/forgot_password_use_case.dart'
+    as _i323;
+import 'package:book_library/features/auth/forgot_password/presentation/cubit/forgot_password_cubit.dart'
+    as _i1066;
 import 'package:book_library/features/auth/login/data/datasource/remote/login_remote_data_source.dart'
     as _i596;
 import 'package:book_library/features/auth/login/data/datasource/remote/login_remote_data_source_impl.dart'
@@ -55,6 +67,7 @@ extension GetItInjectableX on _i174.GetIt {
     final loginModule = _$LoginModule(this);
     final registerModule = _$RegisterModule(this);
     final homeModule = _$HomeModule(this);
+    final forgotPasswordModule = _$ForgotPasswordModule(this);
     gh.factory<_i596.LoginRemoteDataSource>(
         () => _i581.LoginRemoteDataSourceImpl(gh<_i59.FirebaseAuth>()));
     gh.factory<_i684.LoginRepository>(
@@ -63,6 +76,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i568.LoginUseCase(gh<_i684.LoginRepository>()));
     gh.factory<_i746.LogoutUseCase>(
         () => _i746.LogoutUseCase(gh<_i684.LoginRepository>()));
+    gh.factory<_i740.ForgotPasswordRemoteDataSource>(
+        () => _i744.ForgotPasswordDataSourceImpl(gh<_i59.FirebaseAuth>()));
     gh.lazySingleton<_i314.LoginCubit>(() => loginModule.loginCubit);
     gh.factory<_i296.RegisterRemoteDataSource>(
         () => _i753.RegisterRemoteDataSourceImpl(
@@ -70,11 +85,18 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i974.FirebaseFirestore>(),
             ));
     gh.lazySingleton<_i449.RegisterCubit>(() => registerModule.registerCubit);
+    gh.factory<_i660.ForgotPasswordRepository>(() =>
+        _i676.ForgotPasswordRepositoryImpl(
+            gh<_i740.ForgotPasswordRemoteDataSource>()));
     gh.lazySingleton<_i794.HomeCubit>(() => homeModule.homeCubit);
     gh.factory<_i346.RegisterRepository>(() =>
         _i56.RegisterRepositoryImpl(gh<_i296.RegisterRemoteDataSource>()));
     gh.factory<_i727.CreateUserUseCase>(
         () => _i727.CreateUserUseCase(gh<_i346.RegisterRepository>()));
+    gh.factory<_i323.ForgotPasswordUseCase>(() =>
+        _i323.ForgotPasswordUseCase(gh<_i660.ForgotPasswordRepository>()));
+    gh.lazySingleton<_i1066.ForgotPasswordCubit>(
+        () => forgotPasswordModule.forgotPasswordCubit);
     return this;
   }
 }
@@ -107,4 +129,14 @@ class _$HomeModule extends _i664.HomeModule {
   @override
   _i794.HomeCubit get homeCubit =>
       _i794.HomeCubit(_getIt<_i746.LogoutUseCase>());
+}
+
+class _$ForgotPasswordModule extends _i664.ForgotPasswordModule {
+  _$ForgotPasswordModule(this._getIt);
+
+  final _i174.GetIt _getIt;
+
+  @override
+  _i1066.ForgotPasswordCubit get forgotPasswordCubit =>
+      _i1066.ForgotPasswordCubit(_getIt<_i323.ForgotPasswordUseCase>());
 }

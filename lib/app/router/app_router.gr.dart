@@ -10,6 +10,25 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [ForgotPasswordScreen]
+class ForgotPasswordScreenRoute extends PageRouteInfo<void> {
+  const ForgotPasswordScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          ForgotPasswordScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgotPasswordScreenRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ForgotPasswordScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeScreenRoute extends PageRouteInfo<void> {
   const HomeScreenRoute({List<PageRouteInfo>? children})

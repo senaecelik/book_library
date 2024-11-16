@@ -8,7 +8,6 @@ import 'package:book_library/core/di/locator.dart';
 import 'package:book_library/features/auth/login/domain/entity/login_entity.dart';
 import 'package:book_library/features/auth/login/domain/usecases/login_use_case.dart';
 import 'package:book_library/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:book_library/features/home/home_screen.dart';
 import 'package:book_library/widget/button/outlined_primary_button.dart';
 import 'package:book_library/widget/text/message_text_widget.dart';
 import 'package:book_library/widget/text/title_widget.dart';
@@ -137,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                         onPressed: () {
-                          // context.router.push(const ForgotPasswordRoute());
+                          context.router.push(const ForgotPasswordScreenRoute());
                         },
                         child: Text(LocaleKeys.login_forgot_pass.tr()))),
                 SizedBox(

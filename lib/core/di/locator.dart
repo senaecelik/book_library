@@ -1,4 +1,5 @@
 import 'package:book_library/core/di/locator.config.dart';
+import 'package:book_library/features/auth/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:book_library/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:book_library/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:book_library/features/home/cubit/home_cubit.dart';
@@ -32,11 +33,16 @@ abstract class LoginModule {
   @lazySingleton
   LoginCubit get loginCubit;
 
-
 }
 
 @module 
 abstract class HomeModule{
     @lazySingleton
   HomeCubit get homeCubit;
+}
+
+@module 
+abstract class ForgotPasswordModule{
+    @lazySingleton
+  ForgotPasswordCubit get forgotPasswordCubit;
 }

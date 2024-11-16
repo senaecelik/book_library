@@ -30,7 +30,6 @@ final class AppLightTheme implements AppTheme {
   );
   
   @override
-  // TODO: implement elevatedButtonThemeData
   ElevatedButtonThemeData get elevatedButtonThemeData => ElevatedButtonThemeData(
    style: ElevatedButton.styleFrom(
     backgroundColor: Colors.amber,

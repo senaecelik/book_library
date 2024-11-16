@@ -26,7 +26,6 @@ final class AppDarkTheme implements AppTheme {
         borderRadius: BorderRadius.circular(RadiusManager.small.value)),
   );
   
- // TODO: implement elevatedButtonThemeData
   @override
   ElevatedButtonThemeData get elevatedButtonThemeData => ElevatedButtonThemeData(
    style: ElevatedButton.styleFrom(

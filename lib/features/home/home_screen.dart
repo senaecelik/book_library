@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:book_library/app/language/locale_keys.g.dart';
 import 'package:book_library/app/resources/values_manager.dart';
 import 'package:book_library/app/router/app_router.dart';
 import 'package:book_library/core/di/locator.dart';
 import 'package:book_library/features/auth/login/domain/usecases/logout_use_case.dart';
 import 'package:book_library/features/home/cubit/home_cubit.dart';
-import 'package:book_library/widget/button/filled_primary_button.dart';
 import 'package:book_library/widget/button/outlined_primary_button.dart';
 import 'package:book_library/widget/text/title_widget.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +41,7 @@ homeCubit.close();    super.dispose();
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(child: TitleWidget(title: "Home")),
+              const Center(child: TitleWidget(title: "Home")),
               BlocListener<HomeCubit, HomeState>(
                 listener: (context, state) {
                   if (state is HomeDone) {
@@ -54,7 +52,7 @@ homeCubit.close();    super.dispose();
                   }
                 },
                 child: OutlinedPrimaryButton(
-                    child: Text("Çıkış yap"), onPressed: () {
+                    child: const Text("Çıkış yap"), onPressed: () {
                       homeCubit.logout();
                     }),
               )

@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class LoginRepository{
 
-Future<Either<Failure, void>> loginWithEmail(LoginEntity loginModel);
-Future<Either<Failure, void>> logOut();
+Future<Either<Failure, String>> loginWithEmail(LoginEntity loginModel);
+Future<Either<Failure, String>> logOut();
 
 }

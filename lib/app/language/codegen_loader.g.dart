@@ -31,6 +31,11 @@ class CodegenLoader extends AssetLoader{
     "have_an_account": "Zaten bir hesabınız mı var?",
     "login_now": "Şimdi giriş yapın"
   },
+  "forgot_pass": {
+    "title": "Şifremi Unuttum",
+    "sub_title": "E-posta adresinizi girin. Size şifrenizi sıfırlamanız için bir bağlantı göndereceğiz.",
+    "reset_pass": "Şifreyi sıfırla"
+  },
   "home": {
     "title": "Anasayfa"
   },
@@ -53,7 +58,8 @@ class CodegenLoader extends AssetLoader{
       "save": "Kaydet",
       "sign_in_with_google": "Google ile giriş yap",
       "login": "Giriş Yap",
-      "register": "Kayıt Ol"
+      "register": "Kayıt Ol",
+      "go_back": "Geri dön"
     },
     "snackbar": {
       "version": {
@@ -69,7 +75,7 @@ static const Map<String,dynamic> en = {
   },
   "login": {
     "title": "Welcome back! Glad to see you, Again!",
-    "forgot_pass": "Fotgot Password?",
+    "forgot_pass": "Forgot Password?",
     "or_login_with": "Or Login With",
     "dont_you_have_an_account": "Don't you have an account?",
     "register_now": "Register now"
@@ -79,6 +85,11 @@ static const Map<String,dynamic> en = {
     "or_resigter_with": "Or Register With",
     "have_an_account": "Have you an account?",
     "login_now": "Login Now"
+  },
+  "forgot_pass": {
+    "title": "Forgot Password",
+    "sub_title": "Enter your email address. We will send you a link to reset your password.",
+    "reset_pass": "Reset Password"
   },
   "home": {
     "title": "Home"
@@ -102,7 +113,8 @@ static const Map<String,dynamic> en = {
       "save": "Save",
       "sign_in_with_google": "Sign in with Google",
       "login": "Login",
-      "register": "Register"
+      "register": "Register",
+      "go_back": "Go back"
     },
     "snackbar": {
       "version": {
