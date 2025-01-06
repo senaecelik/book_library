@@ -8,6 +8,7 @@ import 'package:book_library/widget/button/outlined_primary_button.dart';
 import 'package:book_library/widget/text/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -34,6 +35,38 @@ homeCubit.close();    super.dispose();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:   FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              useSafeArea: true,
+              context: context,
+              builder: (context) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: const Icon(Iconsax.search_favorite),
+                    title: const Text("Kitap adına göre ara"),
+                    onTap: () {
+                      // context.router.push(const FindBookRoute());
+                    },
+                  ),
+                  ListTile(
+                    onTap: () {
+                      context.router.push(const SearchBookByNameScreenRoute());
+                    },
+                    leading: const Icon(Iconsax.barcode),
+                    title: const Text("Kitap ISBN'sini ara"),
+                  ),
+                  const ListTile(
+                    leading: Icon(Iconsax.book),
+                    title: Text("Manuel olarak kitap ekle"),
+                  ),
+                ],
+              ),
+            );
+          },
+          child: const Icon(Iconsax.search_normal),
+        ),
       body: Padding(
         padding: EdgeInsets.all(AppPadding.pagePadding),
         child: BlocProvider(

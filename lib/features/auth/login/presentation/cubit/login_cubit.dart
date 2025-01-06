@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_library/core/di/locator.dart';
 import 'package:book_library/features/auth/login/domain/entity/login_entity.dart';
 import 'package:book_library/features/auth/login/domain/usecases/login_use_case.dart';
 
 part 'login_state.dart';
+
 
 class LoginCubit extends Cubit<LoginState> {
 
@@ -11,9 +11,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isVisible =true;
   
-  LoginCubit(LoginUseCase? loginUseCase) :
-
-  _loginUseCase = loginUseCase ?? getIt<LoginUseCase>(),
+  LoginCubit(LoginUseCase loginUseCase) :
+  _loginUseCase = loginUseCase ,
    super(LoginInitial());
 
 

@@ -47,6 +47,20 @@ import 'package:book_library/features/auth/register/domain/usecases/create_user_
     as _i727;
 import 'package:book_library/features/auth/register/presentation/cubit/register_cubit.dart'
     as _i449;
+import 'package:book_library/features/book/data/datasource/remote/find_book_api_data_source.dart'
+    as _i196;
+import 'package:book_library/features/book/data/datasource/remote/firebase_book_data_source/firebase_book_data_source.dart'
+    as _i745;
+import 'package:book_library/features/book/data/datasource/remote/firebase_book_data_source/firebase_book_data_source_impl.dart'
+    as _i171;
+import 'package:book_library/features/book/data/repositories/book_repository_impl.dart'
+    as _i872;
+import 'package:book_library/features/book/domain/repositories/book_repository.dart'
+    as _i15;
+import 'package:book_library/features/book/domain/usecases/search_book_by_isbn.dart'
+    as _i602;
+import 'package:book_library/features/book/domain/usecases/search_book_by_name.dart'
+    as _i223;
 import 'package:book_library/features/home/cubit/home_cubit.dart' as _i794;
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
@@ -64,30 +78,40 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final apiModule = _$ApiModule();
     final loginModule = _$LoginModule(this);
-    final registerModule = _$RegisterModule(this);
     final homeModule = _$HomeModule(this);
+    final registerModule = _$RegisterModule(this);
     final forgotPasswordModule = _$ForgotPasswordModule(this);
+    gh.lazySingleton<_i196.FindBookApiDataSource>(
+        () => apiModule.findBookApiDataSource);
     gh.factory<_i596.LoginRemoteDataSource>(
         () => _i581.LoginRemoteDataSourceImpl(gh<_i59.FirebaseAuth>()));
     gh.factory<_i684.LoginRepository>(
         () => _i941.LoginRepositoryImpl(gh<_i596.LoginRemoteDataSource>()));
-    gh.factory<_i568.LoginUseCase>(
-        () => _i568.LoginUseCase(gh<_i684.LoginRepository>()));
     gh.factory<_i746.LogoutUseCase>(
         () => _i746.LogoutUseCase(gh<_i684.LoginRepository>()));
+    gh.factory<_i568.LoginUseCase>(
+        () => _i568.LoginUseCase(gh<_i684.LoginRepository>()));
     gh.factory<_i740.ForgotPasswordRemoteDataSource>(
         () => _i744.ForgotPasswordDataSourceImpl(gh<_i59.FirebaseAuth>()));
-    gh.lazySingleton<_i314.LoginCubit>(() => loginModule.loginCubit);
+    gh.factory<_i745.RemoteBookDataSource>(
+        () => _i171.RemoteBookDataSourceImpl(gh<_i974.FirebaseFirestore>()));
     gh.factory<_i296.RegisterRemoteDataSource>(
         () => _i753.RegisterRemoteDataSourceImpl(
               gh<_i59.FirebaseAuth>(),
               gh<_i974.FirebaseFirestore>(),
             ));
-    gh.lazySingleton<_i449.RegisterCubit>(() => registerModule.registerCubit);
+    gh.factory<_i15.BookRepository>(
+        () => _i872.BookRepositoryImpl(gh<_i196.FindBookApiDataSource>()));
+    gh.factory<_i223.SearchBookByNameUseCase>(
+        () => _i223.SearchBookByNameUseCase(gh<_i15.BookRepository>()));
+    gh.factory<_i602.SearchBookByIsbnUseCase>(
+        () => _i602.SearchBookByIsbnUseCase(gh<_i15.BookRepository>()));
     gh.factory<_i660.ForgotPasswordRepository>(() =>
         _i676.ForgotPasswordRepositoryImpl(
             gh<_i740.ForgotPasswordRemoteDataSource>()));
+    gh.lazySingleton<_i314.LoginCubit>(() => loginModule.loginCubit);
     gh.lazySingleton<_i794.HomeCubit>(() => homeModule.homeCubit);
     gh.factory<_i346.RegisterRepository>(() =>
         _i56.RegisterRepositoryImpl(gh<_i296.RegisterRemoteDataSource>()));
@@ -95,11 +119,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i727.CreateUserUseCase(gh<_i346.RegisterRepository>()));
     gh.factory<_i323.ForgotPasswordUseCase>(() =>
         _i323.ForgotPasswordUseCase(gh<_i660.ForgotPasswordRepository>()));
+    gh.lazySingleton<_i449.RegisterCubit>(() => registerModule.registerCubit);
     gh.lazySingleton<_i1066.ForgotPasswordCubit>(
         () => forgotPasswordModule.forgotPasswordCubit);
     return this;
   }
 }
+
+class _$ApiModule extends _i664.ApiModule {}
 
 class _$LoginModule extends _i664.LoginModule {
   _$LoginModule(this._getIt);
@@ -111,16 +138,6 @@ class _$LoginModule extends _i664.LoginModule {
       _i314.LoginCubit(_getIt<_i568.LoginUseCase>());
 }
 
-class _$RegisterModule extends _i664.RegisterModule {
-  _$RegisterModule(this._getIt);
-
-  final _i174.GetIt _getIt;
-
-  @override
-  _i449.RegisterCubit get registerCubit =>
-      _i449.RegisterCubit(_getIt<_i727.CreateUserUseCase>());
-}
-
 class _$HomeModule extends _i664.HomeModule {
   _$HomeModule(this._getIt);
 
@@ -129,6 +146,16 @@ class _$HomeModule extends _i664.HomeModule {
   @override
   _i794.HomeCubit get homeCubit =>
       _i794.HomeCubit(_getIt<_i746.LogoutUseCase>());
+}
+
+class _$RegisterModule extends _i664.RegisterModule {
+  _$RegisterModule(this._getIt);
+
+  final _i174.GetIt _getIt;
+
+  @override
+  _i449.RegisterCubit get registerCubit =>
+      _i449.RegisterCubit(_getIt<_i727.CreateUserUseCase>());
 }
 
 class _$ForgotPasswordModule extends _i664.ForgotPasswordModule {

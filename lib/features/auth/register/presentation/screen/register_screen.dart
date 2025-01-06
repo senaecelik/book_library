@@ -24,7 +24,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<RegisterScreen> {
-    final RegisterCubit _registerCubit = RegisterCubit(getIt<CreateUserUseCase>());
+    final RegisterCubit registerCubit = RegisterCubit(getIt<CreateUserUseCase>());
   final _formKey = GlobalKey<FormState>();
 
   late TextEditingController _nameController,
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RegisterCubit>.value(
-      value: _registerCubit,
+      value: registerCubit,
       child: Scaffold(
         appBar: AppBar(),
         bottomNavigationBar: BottomAppBar(
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                         password: _passwordController.text,
                         );
 
-                        _registerCubit.createUser(user);
+                        registerCubit.createUser(user);
                       }
                     }),
                 SizedBox(
