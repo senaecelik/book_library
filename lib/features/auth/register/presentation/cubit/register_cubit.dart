@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_library/core/di/locator.dart';
 import 'package:book_library/features/auth/register/domain/entity/user_entity.dart';
 import 'package:book_library/features/auth/register/domain/usecases/create_user_use_case.dart';
 
@@ -9,8 +8,8 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
 
   final CreateUserUseCase _createUserUseCase;
-  RegisterCubit(CreateUserUseCase? createUserUseCase) : 
-  _createUserUseCase = createUserUseCase ?? getIt<CreateUserUseCase>(),
+  RegisterCubit(CreateUserUseCase createUserUseCase) : 
+  _createUserUseCase = createUserUseCase,
   super(RegisterInitial());
 
   Future<void> createUser(UserEntity user) async {

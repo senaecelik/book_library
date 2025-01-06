@@ -10,9 +10,7 @@ import 'package:injectable/injectable.dart';
 class LoginUseCase {
 final LoginRepository repository;
 
-
 LoginUseCase(this.repository);
-
 
 Future<Either<Failure, void>> call(LoginEntity loginModel)async{
   return await repository.loginWithEmail(loginModel);

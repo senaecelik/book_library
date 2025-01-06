@@ -86,6 +86,25 @@ class RegisterScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SearchBookByNameScreen]
+class SearchBookByNameScreenRoute extends PageRouteInfo<void> {
+  const SearchBookByNameScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          SearchBookByNameScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchBookByNameScreenRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SearchBookByNameScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashScreenRoute extends PageRouteInfo<void> {
   const SplashScreenRoute({List<PageRouteInfo>? children})

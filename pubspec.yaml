@@ -55,6 +55,9 @@ dependencies:
   cloud_firestore: ^5.5.0
   dartz: ^0.10.1
   iconsax: ^0.0.8
+  retrofit: ^4.4.1
+  dio: ^5.7.0
+  retrofit_generator: ^9.1.5
 
 
 
